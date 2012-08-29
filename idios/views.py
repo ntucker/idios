@@ -97,9 +97,6 @@ class ProfileDetailView(DetailView):
             profile = get_object_or_404(profile_class, pk=self.kwargs["pk"])
             self.page_user = profile.user
         
-        if not self.request.user.has_perm("can_view", obj=profile):
-            raise Http404
-        
         return profile
     
     def get_context_data(self, **kwargs):
