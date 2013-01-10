@@ -61,7 +61,7 @@ class ProfileBase(models.Model):
 
 
 def create_profile(sender, instance=None, **kwargs):
-    if instance is None:
+    if instance is None or kwargs.get('raw', False) or not kwargs.get('created', True):
         return
     profile, created = get_profile_model().objects.get_or_create(user=instance)
 post_save.connect(create_profile, sender=User)
