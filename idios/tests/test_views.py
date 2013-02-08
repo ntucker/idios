@@ -1,9 +1,10 @@
 from django.test import TestCase
 
-from django.contrib.auth.models import User, SiteProfileNotAvailable
+from django.contrib.auth.models import SiteProfileNotAvailable
 from django.core.urlresolvers import reverse
 
 from idios import utils
+from idios.compat import User
 from idios.tests.utils import IdiosSettingsTestCase
 from idios.tests.models import SimpleProfile, SecretIdentityProfile, SecretVillainProfile
 

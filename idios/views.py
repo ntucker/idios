@@ -8,7 +8,6 @@ from django.utils import simplejson as json
 from django.utils.decorators import method_decorator
 
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 
 try:
     from django.views.generic import ListView, DetailView, CreateView, UpdateView
@@ -23,6 +22,7 @@ except ImportError:
         )
 
 import idios
+from idios.compat import User
 from idios.utils import get_profile_model, get_profile_base
 
 

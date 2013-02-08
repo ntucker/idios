@@ -1,8 +1,8 @@
 from django.test import TestCase
 
 from django.conf import settings
-from django.contrib.auth.models import User
 
+from idios.compat import User
 from idios.tests.utils import IdiosSettingsTestCase
 from idios.tests.models import SimpleProfile, SecretIdentityProfile
 

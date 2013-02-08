@@ -3,16 +3,17 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.utils.translation import ugettext_lazy as _
 
-from django.contrib.auth.models import User
-
 import idios
 
+from idios.compat import User
 from idios.utils import get_profile_model, get_profile_form
 
 try:
     from pinax.apps.account.signals import user_logged_in
 except ImportError:
     user_logged_in = None
+
+AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
 
 class ClassProperty(property):
@@ -25,7 +26,7 @@ class ProfileBase(models.Model):
     
     # @@@ could be unique=True if subclasses don't inherit a concrete base class
     # @@@ need to look at this more
-    user = models.ForeignKey(User, verbose_name=_("user"))
+    user = models.ForeignKey(AUTH_USER_MODEL, verbose_name=_("user"))
     
     class Meta:
         verbose_name = _("profile")
