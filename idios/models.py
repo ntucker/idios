@@ -3,10 +3,10 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
+from django.contrib.auth.models import User
 
 import idios
 
-from idios.compat import User
 from idios.utils import get_profile_model, get_profile_form
 
 try:
