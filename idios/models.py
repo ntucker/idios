@@ -1,13 +1,11 @@
 from django.core.urlresolvers import reverse
 from django.db import models
-from django.db.models.signals import post_save
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
-from django.contrib.auth.models import User
 
 import idios
 
-from idios.utils import get_profile_model, get_profile_form
+from idios.utils import get_profile_form
 
 try:
     from pinax.apps.account.signals import user_logged_in
@@ -61,12 +59,6 @@ class ProfileBase(models.Model):
     
     profile_slug = ClassProperty(classmethod(_default_profile_slug))
 
-
-def create_profile(sender, instance=None, **kwargs):
-    if instance is None or kwargs.get('raw', False) or not kwargs.get('created', True):
-        return
-    profile, created = get_profile_model().objects.get_or_create(user=instance)
-post_save.connect(create_profile, sender=User)
 
 
 def additional_info_kickstart(sender, **kwargs):
